@@ -330,8 +330,12 @@ run.present.stop.color = #cccccc
 # checker and the contrib manager to run properly in those environments.
 #proxy.host=proxy.example.com
 #proxy.port=8080
+#proxy.user=youproxyuser
+#proxy.password=youproxypasswd
 proxy.host=
 proxy.port=
+proxy.user=
+proxy.password=
 
 # PDE X
 pdex.autoSave.autoSaveByDefault=true
