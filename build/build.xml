@@ -1,6 +1,14 @@
 <?xml version="1.0"?>
 <project name="Processing" default="build">
   
+  <!-- Set proxy parameters if you need build trought proxy autentication -->	
+  <property name="proxy.host" value=""/>
+  <property name="proxy.port" value=""/>
+  <property name="proxy.user" value=""/>
+  <property name="proxy.pass" value=""/>
+  <setproxy proxyhost="${proxy.host}" proxyport="${proxy.port}"
+      proxyuser="${proxy.user}" proxypassword="${proxy.pass}"/>
+  
   <!-- Sets properties for macosx/windows/linux depending on current system -->
   <condition property="platform" value="macosx">
     <os family="mac" /> 
