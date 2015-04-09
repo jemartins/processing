@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <project name="Processing" default="build">
   
-  <!-- Set proxy parameters if you need build trought proxy autentication -->	
+  <!-- Set proxy parameters if you need build trought proxy authentication -->	
   <property name="proxy.host" value=""/>
   <property name="proxy.port" value=""/>
   <property name="proxy.user" value=""/>
