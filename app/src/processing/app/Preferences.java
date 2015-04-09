@@ -27,6 +27,8 @@ import java.util.*;
 
 import processing.core.*;
 
+import java.net.Authenticator;
+import java.net.PasswordAuthentication;
 
 /**
  * Storage class for user preferences and environment settings.
@@ -145,18 +147,31 @@ public class Preferences {
     // http://docs.oracle.com/javase/6/docs/technotes/guides/net/proxies.html
     String proxyHost = get("proxy.host");
     String proxyPort = get("proxy.port");
+    final String proxyUser = get("proxy.user");
+    final String proxyPassword = get("proxy.password");
+    
     if (proxyHost != null && proxyHost.trim().length() != 0 &&
         proxyPort != null && proxyPort.trim().length() != 0) {
-      System.setProperty("http.proxyHost", proxyHost);
-      System.setProperty("http.proxyPort", proxyPort);
+	    System.setProperty("https.proxyHost", proxyHost);
+	    System.setProperty("https.proxyPort", proxyPort);
+	    System.setProperty("http.proxyHost", proxyHost);
+	    System.setProperty("http.proxyPort", proxyPort);
+	    if (proxyUser != null && proxyUser.trim().length() != 0 &&
+	        proxyPassword != null && proxyPassword.trim().length() != 0) {
+    		Authenticator.setDefault(
+        	    new Authenticator() {
+			    public PasswordAuthentication getPasswordAuthentication() {
+				    return new PasswordAuthentication(proxyUser, proxyPassword.toCharArray());
+			    }
+		    }
+		);
+            }
     }
   }
 
-
   static protected String getPreferencesPath() {
-    return preferencesFile.getAbsolutePath();
+	  return preferencesFile.getAbsolutePath();
   }
-
 
   // .................................................................
 
